@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: parfumedb
+      POSTGRES_USER: parfumeuser
+      POSTGRES_PASSWORD: parfumepass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_NAME=parfumedb
+      - DB_USER=parfumeuser
+      - DB_PASSWORD=parfumepass
+      - DB_HOST=db
+      - DB_PORT=5432
+
+volumes:
+  postgres_data:
