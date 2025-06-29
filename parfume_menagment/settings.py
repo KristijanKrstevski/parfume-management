@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-(vasdzr7s1kx(xb8ju4rsuku8g3ymcp!i6$gmyal-fpxxwzu3@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['192.168.100.116', 'localhost', '127.0.0.1']
+
+ALLOWED_HOSTS = ['*']  # TRGNI PSOLEE
+
+import socket
+print("💡 ALLOWED_HOSTS:", ALLOWED_HOSTS)
+print("💡 HOSTNAME:", socket.gethostname())
 
 
 # Application definition
@@ -80,7 +86,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'parfumedb'),
         'USER': os.getenv('DB_USER', 'parfumeuser'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'parfumepass'),
-        'HOST': os.getenv('DB_HOST', 'db'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
