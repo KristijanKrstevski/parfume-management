@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parfume-app
+  namespace: parfume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: parfume-app
+  template:
+    metadata:
+      labels:
+        app: parfume-app
+    spec:
+      containers:
+        - name: parfume
+          image: kristijankrstevski/parfume-management:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: parfume-config
+            - secretRef:
+                name: parfume-secret

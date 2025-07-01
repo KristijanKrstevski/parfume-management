@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parfume-config
+  namespace: parfume
+data:
+  DJANGO_SETTINGS_MODULE: parfume_menagment.settings
+  DB_NAME: parfumedb
+  DB_USER: parfumeuser
+  DB_HOST: parfume-db
+  DB_PORT: "5432"
